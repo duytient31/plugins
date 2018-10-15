@@ -4,11 +4,11 @@
 
 package io.flutter.plugins.googlemaps;
 
-import static io.flutter.plugins.googlemaps.GoogleMapsPlugin.CREATED;
-import static io.flutter.plugins.googlemaps.GoogleMapsPlugin.PAUSED;
-import static io.flutter.plugins.googlemaps.GoogleMapsPlugin.RESUMED;
-import static io.flutter.plugins.googlemaps.GoogleMapsPlugin.STARTED;
-import static io.flutter.plugins.googlemaps.GoogleMapsPlugin.STOPPED;
+import static io.flutter.plugins.googlemaps.GoogleMapsPluginIOS.CREATED;
+import static io.flutter.plugins.googlemaps.GoogleMapsPluginIOS.PAUSED;
+import static io.flutter.plugins.googlemaps.GoogleMapsPluginIOS.RESUMED;
+import static io.flutter.plugins.googlemaps.GoogleMapsPluginIOS.STARTED;
+import static io.flutter.plugins.googlemaps.GoogleMapsPluginIOS.STOPPED;
 
 import android.app.Activity;
 import android.app.Application;

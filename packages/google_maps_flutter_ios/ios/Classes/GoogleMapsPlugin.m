@@ -20,7 +20,7 @@ static void interpretMarkerOptions(id json, id<FLTGoogleMapMarkerOptionsSink> si
 
 #pragma mark - GoogleMaps plugin implementation
 
-@implementation FLTGoogleMapsPlugin {
+@implementation FLTGoogleMapsPluginIOS {
   NSObject<FlutterPluginRegistrar>* _registrar;
   FlutterMethodChannel* _channel;
   NSMutableDictionary* _mapControllers;
@@ -30,8 +30,8 @@ static void interpretMarkerOptions(id json, id<FLTGoogleMapMarkerOptionsSink> si
   FlutterMethodChannel* channel =
       [FlutterMethodChannel methodChannelWithName:@"plugins.flutter.io/google_maps"
                                   binaryMessenger:[registrar messenger]];
-  FLTGoogleMapsPlugin* instance =
-      [[FLTGoogleMapsPlugin alloc] initWithRegistrar:registrar channel:channel];
+  FLTGoogleMapsPluginIOS* instance =
+      [[FLTGoogleMapsPluginIOS alloc] initWithRegistrar:registrar channel:channel];
   [registrar addMethodCallDelegate:instance channel:channel];
 }
 

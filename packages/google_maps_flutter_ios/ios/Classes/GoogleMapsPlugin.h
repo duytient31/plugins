@@ -7,5 +7,5 @@
 #import "GoogleMapController.h"
 #import "GoogleMapMarkerController.h"
 
-@interface FLTGoogleMapsPlugin : NSObject<FlutterPlugin, FLTGoogleMapDelegate>
+@interface FLTGoogleMapsPluginIOS : NSObject<FlutterPlugin, FLTGoogleMapDelegate>
 @end

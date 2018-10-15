@@ -12,7 +12,7 @@ flutter:
   plugin:
     androidPackage: io.flutter.plugins.googlemaps
     iosPrefix: FLT
-    pluginClass: GoogleMapsPlugin
+    pluginClass: GoogleMapsPluginIOS
 
 environment:
   sdk: ">=2.0.0-dev.47.0 <3.0.0"
