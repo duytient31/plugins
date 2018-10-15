@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * the map. A Texture drawn using GoogleMap bitmap snapshots can then be shown instead of the
  * overlay.
  */
-public class GoogleMapsPluginIOS implements MethodCallHandler, Application.ActivityLifecycleCallbacks {
+public class GoogleMapsPlugin implements MethodCallHandler, Application.ActivityLifecycleCallbacks {
   static final int CREATED = 1;
   static final int STARTED = 2;
   static final int RESUMED = 3;
@@ -42,12 +42,12 @@ public class GoogleMapsPluginIOS implements MethodCallHandler, Application.Activ
   public static void registerWith(Registrar registrar) {
     final MethodChannel channel =
         new MethodChannel(registrar.messenger(), "plugins.flutter.io/google_maps");
-    final GoogleMapsPluginIOS plugin = new GoogleMapsPluginIOS(registrar, channel);
+    final GoogleMapsPlugin plugin = new GoogleMapsPlugin(registrar, channel);
     channel.setMethodCallHandler(plugin);
     registrar.activity().getApplication().registerActivityLifecycleCallbacks(plugin);
   }
 
-  private GoogleMapsPluginIOS(Registrar registrar, MethodChannel channel) {
+  private GoogleMapsPlugin(Registrar registrar, MethodChannel channel) {
     this.registrar = registrar;
     this.channel = channel;
     this.density = registrar.context().getResources().getDisplayMetrics().density;

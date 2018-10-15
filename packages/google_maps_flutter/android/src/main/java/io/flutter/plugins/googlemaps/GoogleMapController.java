@@ -4,11 +4,11 @@
 
 package io.flutter.plugins.googlemaps;
 
-import static io.flutter.plugins.googlemaps.GoogleMapsPluginIOS.CREATED;
-import static io.flutter.plugins.googlemaps.GoogleMapsPluginIOS.PAUSED;
-import static io.flutter.plugins.googlemaps.GoogleMapsPluginIOS.RESUMED;
-import static io.flutter.plugins.googlemaps.GoogleMapsPluginIOS.STARTED;
-import static io.flutter.plugins.googlemaps.GoogleMapsPluginIOS.STOPPED;
+import static io.flutter.plugins.googlemaps.GoogleMapsPlugin.CREATED;
+import static io.flutter.plugins.googlemaps.GoogleMapsPlugin.PAUSED;
+import static io.flutter.plugins.googlemaps.GoogleMapsPlugin.RESUMED;
+import static io.flutter.plugins.googlemaps.GoogleMapsPlugin.STARTED;
+import static io.flutter.plugins.googlemaps.GoogleMapsPlugin.STOPPED;
 
 import android.app.Activity;
 import android.app.Application;
@@ -60,7 +60,7 @@ final class GoogleMapController
   private final int height;
   private final MethodChannel.Result result;
   private final Timer timer;
-  private final Map<String, MarkerControllerIOS> markers;
+  private final Map<String, MarkerController> markers;
   private OnMarkerTappedListener onMarkerTappedListener;
   private OnCameraMoveListener onCameraMoveListener;
   private OnInfoWindowTappedListener onInfoWindowTappedListener;
@@ -180,19 +180,19 @@ final class GoogleMapController
   Marker addMarker(MarkerOptions markerOptions, boolean consumesTapEvents) {
     final Marker marker = googleMap.addMarker(markerOptions);
     markers.put(
-        marker.getId(), new MarkerControllerIOS(marker, consumesTapEvents, onMarkerTappedListener));
+        marker.getId(), new MarkerController(marker, consumesTapEvents, onMarkerTappedListener));
     return marker;
   }
 
   void removeMarker(String markerId) {
-    final MarkerControllerIOS MarkerControllerIOS = markers.remove(markerId);
-    if (MarkerControllerIOS != null) {
-      MarkerControllerIOS.remove();
+    final MarkerController markerController = markers.remove(markerId);
+    if (markerController != null) {
+      markerController.remove();
     }
   }
 
-  MarkerControllerIOS marker(String markerId) {
-    final MarkerControllerIOS marker = markers.get(markerId);
+  MarkerController marker(String markerId) {
+    final MarkerController marker = markers.get(markerId);
     if (marker == null) {
       throw new IllegalArgumentException("Unknown marker: " + markerId);
     }
@@ -255,8 +255,8 @@ final class GoogleMapController
 
   @Override
   public boolean onMarkerClick(Marker marker) {
-    final MarkerControllerIOS MarkerControllerIOS = markers.get(marker.getId());
-    return (MarkerControllerIOS != null && MarkerControllerIOS.onTap());
+    final MarkerController markerController = markers.get(marker.getId());
+    return (markerController != null && markerController.onTap());
   }
 
   @Override
