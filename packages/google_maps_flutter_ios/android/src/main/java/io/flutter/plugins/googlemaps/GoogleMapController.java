@@ -60,7 +60,7 @@ final class GoogleMapController
   private final int height;
   private final MethodChannel.Result result;
   private final Timer timer;
-  private final Map<String, MarkerController> markers;
+  private final Map<String, MarkerControllerIOS> markers;
   private OnMarkerTappedListener onMarkerTappedListener;
   private OnCameraMoveListener onCameraMoveListener;
   private OnInfoWindowTappedListener onInfoWindowTappedListener;
@@ -180,19 +180,19 @@ final class GoogleMapController
   Marker addMarker(MarkerOptions markerOptions, boolean consumesTapEvents) {
     final Marker marker = googleMap.addMarker(markerOptions);
     markers.put(
-        marker.getId(), new MarkerController(marker, consumesTapEvents, onMarkerTappedListener));
+        marker.getId(), new MarkerControllerIOS(marker, consumesTapEvents, onMarkerTappedListener));
     return marker;
   }
 
   void removeMarker(String markerId) {
-    final MarkerController markerController = markers.remove(markerId);
-    if (markerController != null) {
-      markerController.remove();
+    final MarkerControllerIOS MarkerControllerIOS = markers.remove(markerId);
+    if (MarkerControllerIOS != null) {
+      MarkerControllerIOS.remove();
     }
   }
 
-  MarkerController marker(String markerId) {
-    final MarkerController marker = markers.get(markerId);
+  MarkerControllerIOS marker(String markerId) {
+    final MarkerControllerIOS marker = markers.get(markerId);
     if (marker == null) {
       throw new IllegalArgumentException("Unknown marker: " + markerId);
     }
@@ -255,8 +255,8 @@ final class GoogleMapController
 
   @Override
   public boolean onMarkerClick(Marker marker) {
-    final MarkerController markerController = markers.get(marker.getId());
-    return (markerController != null && markerController.onTap());
+    final MarkerControllerIOS MarkerControllerIOS = markers.get(marker.getId());
+    return (MarkerControllerIOS != null && MarkerControllerIOS.onTap());
   }
 
   @Override

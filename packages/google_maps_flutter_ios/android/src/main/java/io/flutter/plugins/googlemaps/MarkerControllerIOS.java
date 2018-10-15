@@ -9,12 +9,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
 /** Controller of a single Marker on the map. */
-class MarkerController implements MarkerOptionsSink {
+class MarkerControllerIOS implements MarkerOptionsSink {
   private final Marker marker;
   private final OnMarkerTappedListener onTappedListener;
   private boolean consumeTapEvents;
 
-  MarkerController(
+  MarkerControllerIOS(
       Marker marker, boolean consumeTapEvents, OnMarkerTappedListener onTappedListener) {
     this.marker = marker;
     this.consumeTapEvents = consumeTapEvents;
